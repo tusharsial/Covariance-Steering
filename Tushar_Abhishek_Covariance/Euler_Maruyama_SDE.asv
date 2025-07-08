@@ -1,0 +1,33 @@
+%% Initialization and Utility
+close all;
+clear all;
+
+nx = 2; % dimension of state
+tBounds = [0 1];        % The bounds of t
+N       = 500;         % Compute at 1000 grid points
+dt      = (tBounds(2) - tBounds(1)) / N ;
+y_init  = zeros(1,nx);            % Initial y condition 
+I = eye(nx); % identity matrix
+A = [zeros(nx,1) I(:,1:nx-1)]; B = I(:,end); % system matrices
+
+% Initialize the probability distribution for our
+% random variable with mean 0 and stdev of sqrt(dt)
+pd = makedist('Normal',0,sqrt(dt));
+
+ts = linspace(tBounds(1), tBounds(2), N); % From t0-->t1 with N points
+ys = zeros(2,N);     % 1xN Matrix of zeros
+
+% Generate a 2D Wiener process increment
+
+ys(:,1) = y_init;
+%% Computing the Process
+figure;
+    for i = 2:numel(ts)
+        t = tBounds(1) + (i-1) .* dt;
+        y = ys(:,i-1);
+        dw = random(pd);
+        ys(:,i) = y + A*y*dt + B*dw;
+    end
+    hold on;
+    
+    
