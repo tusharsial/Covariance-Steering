@@ -2,13 +2,13 @@
 
 ## Overview
 
-This repository contains the implementation of a **Fixed Horizon Linear Quadratic Covariance Steering in Continuous Time with Hilbert-Schmidt Terminal Cost**.  The algorithm was developed as part of my **Master’s thesis under Professor Abhishek Halder**, and the details of the algorithm, convergence analysis, and theoretical foundations are presented in our accompanying manuscript — available [here on arXiv](<https://arxiv.org/abs/2510.21944>).
+This repository contains the implementation of a **Fixed Horizon Linear Quadratic Covariance Steering in Continuous Time with Hilbert-Schmidt Terminal Cost**.  The algorithm was developed as part of my **Master’s thesis under Professor Abhishek Halder**, and the details of the algorithm, convergence analysis, and theoretical foundations are presented in our accompanying manuscript available [here on arXiv](<https://arxiv.org/abs/2510.21944>).
 
 ---
 
 ### Motivation
 
-While there has been a growing body of literature on fixed-horizon LQ covariance steering problems with terminal cost for discrete-time systems, the continuous-time version remains relatively unexplored. A key reason for this imbalance lies in computational tractability: the discrete-time formulation naturally leads to a semidefinite program that can be solved using off-the-shelf interior-point solvers, whereas the continuous-time formulation with terminal cost gives rise to a coupled nonlinear system of matrix ODEs, for which a principled and computationally efficient algorithm has remained unclear.
+While a growing body of literature has emerged on fixed-horizon LQ covariance steering problems with terminal cost for discrete-time systems, the continuous-time version remains relatively unexplored. A key reason for this imbalance lies in computational tractability: the discrete-time formulation naturally leads to a semidefinite program that can be solved using off-the-shelf interior-point solvers, whereas the continuous-time formulation with terminal cost gives rise to a coupled nonlinear system of matrix ODEs, for which a principled and computationally efficient algorithm has remained unclear.
 
 To address this challenge, we propose a **Matricial Recursive Algorithm** with a **fast convergence rate**, leveraging **linear fractional transformations (LFTs)** parameterized by the **state transition matrix** of the associated **Hamiltonian system**.
 
@@ -123,7 +123,7 @@ This work lays the algorithmic groundwork toward handling the Wasserstein termin
 
 ## Issues & Contributions
 
-If you encounter any bugs or difficulties while executing the code, please open an issue or contact me directly. Your feedback is valuable and helps improve the implementation.
+If you happen to encounter any bugs or difficulties while executing the code, please open an issue or contact me directly. Your feedback is valuable and helps improve the implementation.
 
 ---
 
@@ -151,4 +151,4 @@ If you use this code in your research, please cite our work:
 [tsial@iastate.edu]  
 [https://tusharsial.github.io/]
 
-**Advisor**: Professor Abhishek Halder
+**Advisor**: Professor Abhishek Halder, Department of Aerospace Engineering, Iowa State University
