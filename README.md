@@ -151,4 +151,4 @@ If you use this code in your research, please cite our work:
 [tsial@iastate.edu]  
 [https://tusharsial.github.io/]
 
-**Advisor**: Professor Abhishek Halder, Department of Aerospace Engineering, Iowa State University
+**Advisor**: Professor [Abhishek Halder](https://abhishekhalder.org/index.html), Department of Aerospace Engineering, Iowa State University
