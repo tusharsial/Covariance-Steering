@@ -29,7 +29,7 @@ Our broader goal is to extend this framework to **Wasserstein terminal costs** a
 - **MATLAB** (no additional toolboxes required)
 - **Python** (optional, for generating publication-ready plots)
 - **Hardware**: No high-performance computing required
-  - *Note: The code was tested on [AMD Ryzen 5-4600H (8 cores, 3.00 GHz)], [NUMBER] cores, [NVIDIA 1650 Ti 1600], [16 GB RAM]. Execution time was under 10 seconds.*
+  - *Note: The code was tested on [AMD Ryzen 5-4600H (8 cores, 3.00 GHz)], [NUMBER] cores, [NVIDIA GTX 1650 Ti], [16 GB RAM]. Execution time was under 10 seconds.*
 
 ---
 
