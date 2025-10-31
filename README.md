@@ -1,20 +1,26 @@
-# Optimal Covariance Steering Algorithm in Continuous Time
+# Fixed Horizon Linear Quadratic Covariance Steering in Continuous Time with Hilbert-Schmidt Terminal Cost
 
 ## Overview
 
-This repository contains the implementation of an **Optimal Covariance Steering Algorithm in Continuous Time with Hilbert-Schmidt Terminal Cost** for Linear Stochastic Systems over a finite time horizon. This work was developed under the supervision of **Professor Abhishek Halder**.
+This repository contains the implementation of a **Fixed Horizon Linear Quadratic Covariance Steering in Continuous Time with Hilbert-Schmidt Terminal Cost**.  The algorithm was developed as part of my **Master’s thesis under Professor Abhishek Halder**, and the details of the algorithm, convergence analysis, and theoretical foundations are presented in our accompanying manuscript — available [here on arXiv](<https://arxiv.org/abs/2510.21944>).
+
+---
 
 ### Motivation
 
-While there has been growing literature on fixed-horizon LQ covariance steering problems with terminal cost for discrete-time systems, the continuous-time version remains relatively unexplored. A key reason for this imbalance lies in computational tractability: the discrete-time formulation naturally leads to a semidefinite program solvable using off-the-shelf interior-point solvers, whereas the continuous-time formulation with terminal cost gives rise to a coupled nonlinear system of matricial ODEs, for which a principled and computationally efficient algorithm has remained unclear.
+While there has been a growing body of literature on fixed-horizon LQ covariance steering problems with terminal cost for discrete-time systems, the continuous-time version remains relatively unexplored. A key reason for this imbalance lies in computational tractability: the discrete-time formulation naturally leads to a semidefinite program that can be solved using off-the-shelf interior-point solvers, whereas the continuous-time formulation with terminal cost gives rise to a coupled nonlinear system of matrix ODEs, for which a principled and computationally efficient algorithm has remained unclear.
 
-This research introduces a soft constraint via the **Hilbert-Schmidt Terminal Cost**, together with a quadratic cost function for control input and state. The necessary conditions of optimality lead to a coupled matrix ODE two-point boundary value problem with nonlinear split boundary conditions. To solve this system, we have designed a **Matricial Recursive Algorithm** with fast convergence rate, grounded in linear fractional transformations parameterized by the state transition matrix of the associated Hamiltonian system.
+To address this challenge, we propose a **Matricial Recursive Algorithm** with a **fast convergence rate**, leveraging **linear fractional transformations (LFTs)** parameterized by the **state transition matrix** of the associated **Hamiltonian system**.
+
+This research introduces a soft constraint via the **Hilbert-Schmidt Terminal Cost**, together with a quadratic cost function for control input and state. The necessary conditions of optimality lead to a coupled matrix ODE two-point boundary value problem with nonlinear split boundary conditions. To solve this system, we have designed a **Matricial Recursive Algorithm** with a fast convergence rate, grounded in linear fractional transformations parameterized by the state transition matrix of the associated Hamiltonian system.
 
 ### Algorithm Validation
 
-The proposed algorithm was tested and validated on a close-proximity rendezvous scenario by modeling the relative motion of a service spacecraft to a target satellite in LEO using **Clohessy-Wiltshire dynamics** with stochastic disturbances.
+The proposed algorithm was tested and validated on multiple systems. Below are 2 such examples:
+1. **Double Integrator (2D)** system, and  
+2. **Noisy Clohessy–Wiltshire (CW)** equations (6D) for spacecraft rendezvous under stochastic disturbances.
 
-For complete details about the algorithm development, proof of convergence, and theoretical foundations, please refer to our manuscript available on [arXiv](YOUR_ARXIV_LINK_HERE).
+Our broader goal is to extend this framework to **Wasserstein terminal costs** and cases where **noise enters through a channel different from the control input**.
 
 ---
 
@@ -23,7 +29,7 @@ For complete details about the algorithm development, proof of convergence, and 
 - **MATLAB** (no additional toolboxes required)
 - **Python** (optional, for generating publication-ready plots)
 - **Hardware**: No high-performance computing required
-  - *Note: The code was tested on [YOUR_CPU_MODEL], [NUMBER] cores, [GPU_MODEL if applicable], [RAM_AMOUNT]. Execution time was under 10 seconds.*
+  - *Note: The code was tested on [AMD Ryzen 5-4600H (8 cores, 3.00 GHz)], [NUMBER] cores, [NVIDIA 1650 Ti 1600], [16 GB RAM]. Execution time was under 10 seconds.*
 
 ---
 
@@ -32,11 +38,6 @@ For complete details about the algorithm development, proof of convergence, and 
 ### Step 1: Clone the Repository
 
 Clone this repository to your preferred location:
-
-```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-cd YOUR_REPO_NAME
-```
 
 ### Step 2: Navigate to the MATLAB Code Directory
 
@@ -50,17 +51,7 @@ This directory contains all the required scripts to solve the optimal covariance
 
 ## Running the Code
 
-### Step 3: Execute the Main Script
-
-Run the main MATLAB script:
-
-```matlab
-FTLQ_Covariance_Frobenius.m
-```
-
-This script solves the Fixed-time Linear Quadratic Covariance Steering problem in continuous time with a terminal cost measured in Hilbert-Schmidt (Frobenius) norm error between the desired and controlled terminal covariances.
-
-### Step 4: Configure Your Example
+### Step 3: Configure Your Example
 
 **IMPORTANT**: Before executing the code, please configure the following parameters in `FTLQ_Covariance_Frobenius.m`:
 
@@ -85,6 +76,16 @@ The script contains two numerical examples:
 4. **Uncomment/Comment Sections**
    - **To run the "DI" example**: Uncomment all lines in the "DI" section and comment out all lines in the "Noisy CW" section
    - **To run the "Noisy CW" example**: Uncomment all lines in the "Noisy CW" section and comment out all lines in the "DI" section
+
+### Step 4: Execute the Main Script
+
+Run the main MATLAB script:
+
+```matlab
+FTLQ_Covariance_Frobenius.m
+```
+
+This script solves the Fixed-time Linear Quadratic Covariance Steering problem in continuous time with a terminal cost measured in Hilbert-Schmidt (Frobenius) norm error between the desired and controlled terminal covariances.
 
 ### Step 5: Output
 
@@ -113,12 +114,10 @@ These scripts use the exported data from `Numerical_Example_Data/` as input to g
 
 ## Future Work
 
-This work lays the algorithmic groundwork toward handling more general terminal costs. Ongoing and future extensions include:
+This work lays the algorithmic groundwork toward handling the Wasserstein terminal cost. Future extensions include:
 
 - **Wasserstein Terminal Distance**: Development of a custom algorithm to solve the boundary value problem with Wasserstein terminal cost
 - **Generalized Noise Channels**: Extension to cases where noise does not enter through the same channel as the control input
-
-The repository will be updated as these extensions are completed.
 
 ---
 
@@ -133,26 +132,23 @@ If you encounter any bugs or difficulties while executing the code, please open 
 If you use this code in your research, please cite our work:
 
 ```bibtex
-@article{YOUR_CITATION_KEY,
-  title={YOUR_PAPER_TITLE},
-  author={YOUR_NAME and Abhishek Halder},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
-  year={2024/2025}
+@misc{sial2025fixedhorizonlinearquadratic,
+      title={Fixed Horizon Linear Quadratic Covariance Steering in Continuous Time with Hilbert-Schmidt Terminal Cost}, 
+      author={Tushar Sial and Abhishek Halder},
+      year={2025},
+      eprint={2510.21944},
+      archivePrefix={arXiv},
+      primaryClass={math.OC},
+      url={https://arxiv.org/abs/2510.21944}, 
 }
 ```
 
 ---
 
-## License
-
-[Add your license here, e.g., MIT, GPL, etc.]
-
----
-
 ## Contact
 
-[Your Name]  
-[Your Email]  
-[Your Website/LinkedIn]
+[Tushar Sial]  
+[tsial@iastate.edu]  
+[https://tusharsial.github.io/]
 
 **Advisor**: Professor Abhishek Halder
